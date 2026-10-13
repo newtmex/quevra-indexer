@@ -1,15 +1,17 @@
 # Quevra Envio indexer
 
-Indexes Quevra's Monad Testnet veMON lock lifecycle, validator identities and backing, staking intent and settlement, validator vote weights, reward funding and claims, and vault reward accounting. It starts at the deployed contract blocks recorded in `packages/contracts/deployments/monadTestnet/` and registers vault, gauge, and bribe instances from their factory events.
+Indexes Quevra's Monad Testnet veMON lock lifecycle, validator identities and backing, staking intent and settlement, validator vote weights, reward funding and claims, and vault reward accounting. Contract addresses and start blocks are configured in `config.yaml`; vault, gauge, and bribe instances are registered from their factory events.
 
 ## Local development
 
 Requirements: Node.js 22+, pnpm, Docker, and an Envio HyperSync API token.
 
-1. Set `ENVIO_API_TOKEN` in `services/indexer/.env` (create this file locally; do not commit it).
-2. From the repository root, run `pnpm --filter @quevra/indexer codegen` once after changing `config.yaml` or `schema.graphql`.
-3. Run `pnpm --filter @quevra/indexer indexer:dev`. The local GraphQL endpoint is `http://127.0.0.1:8080/v1/graphql`.
-4. In another terminal, run `pnpm --filter @quevra/dapp dev`.
+1. Install dependencies with `pnpm install`.
+2. Set `ENVIO_API_TOKEN` in a local `.env` file (do not commit it).
+3. Run `pnpm codegen` after changing `config.yaml` or `schema.graphql`.
+4. Run `pnpm indexer:dev`. The local GraphQL endpoint is `http://127.0.0.1:8080/v1/graphql`.
+
+To run the dapp against this local indexer, start the dapp separately and set its `ENVIO_GRAPHQL_ENDPOINT` to the local GraphQL URL.
 
 The dapp's `/api/indexer` route proxies a wallet-scoped GraphQL query. For Envio Cloud, set `ENVIO_GRAPHQL_ENDPOINT` to the deployed GraphQL URL and configure any endpoint authentication with `ENVIO_GRAPHQL_AUTH_TOKEN` or `ENVIO_GRAPHQL_ADMIN_SECRET` in the dapp server environment.
 
