@@ -1,0 +1,174 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: quevra-solonet
+description: Quevra activity on a local Monad Solonet.
+
+contracts:
+  - name: StakingController
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "VeSet(address indexed ve)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "VaultRegistered(uint256 indexed tokenId, address indexed vault, address operator)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ValidatorCommissionSet(uint256 commission)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ValidatorCommissionScheduled(uint256 commission, uint64 effectiveCycle)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "MONDeposited(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "AgentCreated(uint256 indexed tokenId, address indexed agent)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Staked(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "StakingIntentSet(uint256 indexed tokenId, uint64 indexed cycle)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "StakingPoked(uint256 indexed tokenId, uint64 indexed cycle, bool satisfied)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Unstaked(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Compounded(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Withdrawn(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "RewardsClaimed(uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: VeMON
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "Transfer(address indexed from, address indexed to, uint256 indexed tokenId)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ApprovalForAll(address indexed owner, address indexed operator, bool approved)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockCreated(uint256 indexed tokenId, address indexed account, uint256 amount, uint256 unlockEpoch)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockPermanent(address indexed account, uint256 indexed tokenId, uint256 amount, uint64 epoch)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "UnlockPermanent(address indexed account, uint256 indexed tokenId, uint256 amount, uint64 epoch)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockAmountIncreased(uint256 indexed tokenId, uint256 amount, uint256 newAmount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockAmountDecreased(uint256 indexed tokenId, uint256 amount, uint256 newAmount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Checkpoint(uint64 indexed epoch, uint256 indexed pointIndex)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: VeValidator
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "Transfer(address indexed from, address indexed to, uint256 indexed tokenId)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ApprovalForAll(address indexed owner, address indexed operator, bool approved)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockAmountIncreased(uint256 indexed tokenId, uint256 amount, uint256 newAmount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "LockAmountDecreased(uint256 indexed tokenId, uint256 amount, uint256 newAmount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Checkpoint(uint64 indexed epoch, uint256 indexed pointIndex)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: ValidatorsVoter
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "WhitelistToken(address indexed whitelister, address indexed token, bool indexed whitelisted)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "BoostGaugeCreated(uint256 indexed boostableTokenId, address indexed gauge, address indexed rewardToken)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "BribeVotingRewardsCreated(uint256 indexed boostableTokenId, address indexed bribeVotingRewards)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "BoostPoked(uint256 indexed boostableTokenId, uint256 boost)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "BoostableTokenBurned(uint256 indexed boostableTokenId, address indexed gauge)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "StakeVoteSynced(uint256 indexed tokenId, address indexed gauge, uint256 allocation, uint256 oldWeight, uint256 newWeight)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: StakingVault
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "RewardsSynced(uint256 newlyAccrued, uint256 rewardPerShare)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "RewardPaid(uint256 indexed tokenId, address indexed recipient, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: Gauge
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "NotifyReward(address indexed from, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ClaimRewards(address indexed account, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+  - name: BribeVotingRewards
+    handler: src/handlers/Quevra.ts
+    events:
+      - event: "Deposit(address indexed from, uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "Withdraw(address indexed from, uint256 indexed tokenId, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "NotifyReward(address indexed from, address indexed reward, uint256 indexed cycle, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+      - event: "ClaimRewards(address indexed from, address indexed reward, uint256 amount)"
+        field_selection:
+          transaction_fields: [hash]
+
+
+chains:
+  - id: 20143
+    rpc:
+      - url: http://127.0.0.1:48080
+        for: sync
+        initial_block_interval: 100
+        interval_ceiling: 100
+    start_block: latest
+    contracts:
+      - name: StakingController
+        address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
+      - name: VeMON
+        address: "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0"
+      - name: VeValidator
+        address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1"
+      - name: ValidatorsVoter
+        address: "0x9A676e781A523b5d0C0e43731313A708CB607508"
+      - name: StakingVault
+      - name: Gauge
+      - name: BribeVotingRewards
