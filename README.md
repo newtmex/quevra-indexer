@@ -13,7 +13,7 @@ Requirements: Node.js 22+, pnpm, and Docker. An Envio HyperSync API token is nee
 
 The Solonet config in `config.solonet.yaml` reads from `http://127.0.0.1:48080` and uses the local deployment addresses recorded in `packages/contracts/deployments/20143.json`. It is isolated from the Monad Testnet config so local development does not require an Envio API token. It starts from the current head because Solonet RPC only serves a recent block window; earlier local activity cannot be backfilled.
 
-To run the dapp against the local Solonet indexer, set `NEXT_PUBLIC_CHAIN_ID=20143` in the dapp environment and start the dapp separately. Its `/api/indexer` route defaults to the local GraphQL URL; override it with `ENVIO_SOLONET_GRAPHQL_ENDPOINT` if needed. For Envio Cloud on Monad Testnet, set `ENVIO_GRAPHQL_ENDPOINT` to the deployed GraphQL URL and configure endpoint authentication with `ENVIO_GRAPHQL_AUTH_TOKEN` or `ENVIO_GRAPHQL_ADMIN_SECRET` in the dapp server environment.
+The hosted Monad testnet dapp is at [https://quevra-pearl.vercel.app](https://quevra-pearl.vercel.app). To run the dapp against the local Solonet indexer, set `NEXT_PUBLIC_CHAIN_ID=20143` in the dapp environment and start the dapp separately. Its `/api/indexer` route defaults to the local GraphQL URL; override it with `ENVIO_SOLONET_GRAPHQL_ENDPOINT` if needed. For Envio Cloud on Monad Testnet, set `ENVIO_GRAPHQL_ENDPOINT` to the deployed GraphQL URL and configure endpoint authentication with `ENVIO_GRAPHQL_AUTH_TOKEN` or `ENVIO_GRAPHQL_ADMIN_SECRET` in the dapp server environment.
 
 ## Indexed data
 
